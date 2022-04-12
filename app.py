@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = "password"
 
 # Access Key - PIXABAY
-pixabayKey = "26665956-581e1893500811328e88245c7"
+pixabayKey = "" # Insert API Key
 
 
 def getVideoData():
@@ -79,19 +79,17 @@ def getVideos():
 
         videoLink = videoURL[i]
         videoName = str(i+1) + ".mp4"
-        '''
+        
         # Download Video
         print("Downloading starts...\n")
         urllib.request.urlretrieve(videoLink, videoName)
         print("Download completed..!!")
-        '''
+        
         # Crop in given duration
         clip = VideoFileClip(videoName)
         clip = clip.subclip(0, keywordList[i][1])
 
         # Subtitle
-        # txt = (TextClip(keywordList[i][2], font='Arial',fontsize=16, color='white').with_duration(keywordList[i][1]))
-
         def generator(txt): return TextClip(
             txt, font='Arial', fontsize=16, color='white')
 
@@ -112,4 +110,4 @@ def getVideos():
     # showing final clip
     finalVideo.ipython_display(width=480)
 
-    return "website-search-blender-integration"
+    return "Download Success"
